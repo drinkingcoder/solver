@@ -1,0 +1,26 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../include/Block.hpp
+iostream
+-
+string
+-
+vector
+-
+eigen3/Eigen/Dense
+-
+
+/home/drinkingcoder/Documents/solver/src/Block.cpp
+Block.hpp
+/home/drinkingcoder/Documents/solver/src/Block.hpp
+
+/home/drinkingcoder/Documents/solver/src/main.cpp
+Block.hpp
+/home/drinkingcoder/Documents/solver/src/Block.hpp
+

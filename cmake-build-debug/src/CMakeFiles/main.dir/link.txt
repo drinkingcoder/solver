@@ -1,0 +1,1 @@
+g++-5  -std=c++14 -g  -rdynamic CMakeFiles/main.dir/main.cpp.o CMakeFiles/main.dir/Block.cpp.o  -o ../../bin/main  -L/home/drinkingcoder/Documents/solver/lib -Wl,-rpath,/home/drinkingcoder/Documents/solver/lib -llua -ldl 
