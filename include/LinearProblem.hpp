@@ -35,6 +35,15 @@ namespace DCSolver
 		std::vector<std::shared_ptr<Param>>		m_bs;
 
 		std::map<std::shared_ptr<DataType>,std::shared_ptr<Variable>> m_mapRawToVariable;	//map the input raw data ptr to variable ptr
+
+		std::vector<std::shared_ptr<Variable>> m_marginalizedVariable;
+		std::vector<Index> m_marginalizedIndex;
+		std::vector<std::shared_ptr<Variable>> m_conditionedVariable;
+		std::vector<Index> m_conditionedIndex;
+		
+		std::shared_ptr<Variable> getCorrespondingVariable(std::shared_ptr<DataType> x)
+		{
+		}
     public:
 		enum Status {
 			ADD_FAILED,
@@ -44,7 +53,9 @@ namespace DCSolver
 
         void addx(std::shared_ptr<DataType> x, int N)
         {
-			m_xs.push_back(std::make_shared<Variable>(x,N));
+			std::shared_ptr<Variable> tmpVPtr = std::make_shared<Variable>(x,N);
+			m_xs.push_back(tmpVPtr);
+			m_mapRawToVariable[x] = tmpVPtr;
         }
 
         int setA(std::shared_ptr<DataType> x1,std::shared_ptr<DataType> x2,std::shared_ptr<DataType> A)
@@ -63,10 +74,28 @@ namespace DCSolver
 
         int setb(std::shared_ptr<DataType> x,std::shared_ptr<DataType> b)
         {
+			auto it = m_xs.find(m_xs.begin(),m_xs.end(),x1);
+			assert( *it != m_xs.end() );
+			std::shared_ptr<Variable> tmp_x = *it;
 			
+			m_bs.push_back(std::make_shared<Param>(b, x));
         }
 
+		void setMarginalizing(std::shared_ptr<DataType> x,int index)
+		{
+		}
 
+		void unSetMarginalizing(std::shared_ptr<DataType> x,int index)
+		{
+		}
+
+		void setConditioning(std::shared_ptr<DataType> x,int index,DataType value = 0.0)
+		{
+		}
+
+		void unSetConditioning(std::shared_ptr<DataType> x,int index)
+		{
+		}
     };
 }
 
